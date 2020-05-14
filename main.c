@@ -1,13 +1,21 @@
-#include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
+
+#ifndef WIN32
+#include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#else
+#include <WinSock2.h>
+#include <Windows.h>
+#include <ws2tcpip.h>
+#endif
 
 #include "nat_traversal.h"
+#include "XGetOpt.h"
 
 #define DEFAULT_SERVER_PORT 9988
 #define MSG_BUF_SIZE 512

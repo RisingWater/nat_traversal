@@ -1,13 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifndef WIN32
 #include <unistd.h>
-#include <errno.h>
 #include <sys/time.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h> 
+#else
+#include <WinSock2.h>
+#include <Windows.h>
+#include <ws2tcpip.h>
+#define close closesocket
+#endif
+#include <errno.h>
+
 
 #include "nat_type.h"
 
